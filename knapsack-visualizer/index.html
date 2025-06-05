@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Knapsack Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>0/1 Knapsack Problem Visualizer</h1>
+        
+        <label for="themeSelect">Theme:</label>
+        <select id="themeSelect">
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
+            <option value="sci-fi">Sci-Fi Mode</option>
+            <option value="retro">Retro Mode</option>
+        </select>
+        
+        
+
+        <div class="input-section">
+            <h3>Add Items </h3>
+            <input type="text" id="weightsInput" placeholder="Enter Weights (e.g. 2 3 4)">
+            <input type="text" id="valuesInput" placeholder="Enter Values (e.g. 4 5 6)">
+            <input type="number" id="knapsackCapacity" placeholder="Enter Capacity">
+            <button onclick="addBulkItems()">Add Items</button>
+        </div>
+        
+
+        <div id="itemsContainer">
+            <h3>Available Items</h3>
+        </div>
+        
+        <div class="knapsack-section">
+            <h3>Knapsack (Capacity: <span id="capacityDisplay">0</span>)</h3>
+        </div>
+        
+        <div id="itemsTakenContainer">
+            
+            <p id="itemsTaken"></p>
+            <p id="totalStats"></p>
+        </div>
+        <div id="statsBox" style="font-weight: bold; margin-top: 10px;"></div>
+
+        
+       
+        <button onclick="runKnapsack()">Run Algorithm</button>
+        <button onclick="reset()">Reset</button>
+        <div id="dpHeader" style="margin-bottom: 10px; font-size: 18px; font-weight: bold;"></div>
+        <!-- Particle Overlay for Default Theme -->
+        <div id="particleOverlay"></div>
+
+        <h3>DP Table</h3>
+        <table id="dpTable"></table>
+
+        
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

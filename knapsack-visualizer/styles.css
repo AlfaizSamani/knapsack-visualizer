@@ -1,0 +1,601 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Input and Button Styling */
+input {
+    padding: 8px;
+    margin: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: black; /* Fix for visibility */
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Available Items & Knapsack Section */
+#itemsContainer, #knapsack {
+    border: 2px solid #333;
+    padding: 15px;
+    border-radius: 10px;
+    min-height: 50px;
+    display: inline-block;
+    margin: 10px;
+    background-color: white;
+}
+
+/* Dragged Items */
+.item {
+    display: inline-block;
+    background: #444;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: grab;
+}
+
+/* DP Table Wrapper */
+#dpTableContainer {
+    width: 100%;
+    max-width: 100vw;  /* Prevents going out of the page */
+    overflow-x: auto;   /* Enables horizontal scroll if absolutely needed */
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* DP Table Base */
+#dpTable {
+    border-collapse: collapse;
+    margin: 0 auto;
+    text-align: center;
+    backdrop-filter: blur(10px); /* Glass effect */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    width: auto;
+}
+
+/* Default Table Cell Size */
+#dpTable th, #dpTable td {
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Normal Size (Knapsack ≤ 15) */
+.normal-dp-table th, .normal-dp-table td {
+    font-size: 18px;
+    padding: 10px;
+    min-width: 50px;
+}
+
+/* Medium Size (Knapsack 16-25) */
+.medium-dp-table th, .medium-dp-table td {
+    font-size: 14px;
+    padding: 6px;
+    min-width: 40px;
+}
+
+/* Small Size (Knapsack 26+) */
+.small-dp-table th, .small-dp-table td {
+    font-size: 10px;
+    padding: 4px;
+    min-width: 30px;
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .normal-dp-table th, .normal-dp-table td {
+        font-size: 14px;
+        padding: 6px;
+    }
+    .medium-dp-table th, .medium-dp-table td {
+        font-size: 12px;
+        padding: 5px;
+    }
+    .small-dp-table th, .small-dp-table td {
+        font-size: 9px;
+        padding: 3px;
+    }
+}
+
+/* DP Table First Row (Header) */
+#dpTable th {
+    font-size: 14px;  /* Reduce font size */
+    padding: 5px;     /* Reduce padding */
+    min-width: 30px;  /* Shrink column width */
+}
+
+/* DP Table First Column (Item Index) */
+#dpTable td:first-child, #dpTable th:first-child {
+    min-width: 40px;  /* Reduce width */
+    font-size: 14px;  /* Match header size */
+    padding: 5px;     /* Reduce space */
+}
+
+/* Normal Cells */
+#dpTable td {
+    font-size: 16px;  /* Keep readable */
+    padding: 6px;
+    min-width: 35px;
+}
+
+/* Total Stats Styling */
+#totalStats {
+    font-size: 18px; /* Increase font size */
+    font-weight: bold; /* Make it bold */
+    color: #333; /* Text color */
+    margin-top: 10px; /* Add some space above */
+}
+
+#itemsTakenContainer {
+    font-size: 18px; /* Increase font size */
+    font-weight: bold; /* Make it bold */
+    color: #333; /* Text color */
+}
+
+/* ===== Dark Mode Fix ===== */
+.dark-mode {
+    background-color: #000000;
+    color: white;
+}
+
+.dark-mode input, 
+.dark-mode button, 
+.dark-mode #itemsContainer, 
+.dark-mode #knapsack {
+    background-color: rgba(0, 0, 0, 0.15); /* Light transparent bg */
+    color: white !important;
+    border: 1px solid #edeaea;
+}
+
+/* ===== God of War Theme Fix ===== */
+.gow-theme {
+    background: url('game1.jpg') no-repeat center center/cover;
+    color: white !important;
+}
+
+.gow-theme input, 
+.gow-theme button, 
+.gow-theme #itemsContainer, 
+.gow-theme #knapsack {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: 2px solid rgba(232, 43, 0, 0.601);
+}
+.gow-theme #itemsTakenContainer,
+.gow-theme #totalStats {
+    color: rgb(241, 233, 233) !important;
+    
+}
+/* ===== Sci-Fi Theme Fix ===== */
+.sci-fi-theme {
+    background: url('scifi.jpg') no-repeat center center/cover;
+    color: cyan !important;
+}
+
+.sci-fi-theme input, 
+.sci-fi-theme button, 
+.sci-fi-theme #itemsContainer, 
+
+
+.sci-fi-theme #knapsack {
+    background: rgba(0, 0, 0, 0.9);
+    color: cyan !important;
+    border: 2px solid cyan;
+}
+.sci-fi-theme #itemsTakenContainer,
+.sci-fi-theme #totalStats {
+    color: cyan !important;
+    
+}
+/* Make Cells Auto-Adjust */
+#dpTable th, #dpTable td {
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    padding: 10px; /* Default padding */
+    min-width: 50px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#dpTable th {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#dpTable td {
+    background: rgba(255, 255, 255, 0.2);
+    color: #222;
+    font-weight: 500;
+}
+
+#dpTable td:hover {
+    background: rgb(255, 242, 0); /* Slight fiery highlight */
+    transform: scale(1.05);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+#dpTable tr:nth-child(2) td:hover {
+    background: rgb(255, 242, 0); /* Highlight for the second row */
+    transform: scale(1.05);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+
+
+#dpTable tr:nth-child(even) td {
+    background: rgba(255, 255, 255, 0.3); /* Subtle row alternation */
+}
+
+/* Smooth number appearance */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#dpTable td {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* ===== Dark Mode Fix ===== */
+.dark-mode #dpTable {
+    background: transparent;
+    border-collapse: collapse;
+}
+
+.dark-mode #dpTable th, 
+.dark-mode #dpTable td {
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    border: 1px solid rgba(255, 237, 237, 0.2); /* Thin white lines */
+}
+
+.dark-mode #dpTable th {
+    
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark-mode #dpTable td:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.03);
+    
+}
+.dark-mode #dpTable tr:nth-child(2) td:hover {
+    background: rgb(34, 34, 34); /* Highlight for the second row */
+    transform: scale(1.05);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+.dark-mode #dpTable th {
+  animation: shadowFade 1s ease-in-out;
+}
+
+.dark-mode #dpTable tr:first-child td,
+.dark-mode #dpTable td:first-child {
+  animation: darkFlyIn 1s ease-in-out;
+}
+
+.dark-mode #dpTable td {
+  animation: horrorAppear 0.8s ease-in-out;
+}
+
+
+
+/* ===== God of War Theme Fix ===== */
+/* ===== GOW Theme Transparent DP Table ===== */
+.gow-theme #dpTable {
+    background: transparent; /* No background */
+    border-collapse: collapse; /* Remove extra spacing */
+    max-width: 90vw; /* Prevent table from overflowing */
+    overflow-x: auto;
+}
+
+/* Table Borders - Fiery Red Thin Lines */
+.gow-theme #dpTable th, 
+.gow-theme #dpTable td {
+    background: transparent; /* Fully transparent cells */
+    color: white; /* Keep digits visible */
+    font-weight: bold;
+    border: 1px solid rgba(232, 43, 0, 0.8); /* Blood red glow */
+}
+
+/* Table Header - Intense God of War Vibes */
+.gow-theme #dpTable th {
+    background: rgba(0, 0, 0, 0.7); /* Dark background */
+    text-shadow: 0px 0px 15px rgba(232, 43, 0, 1); /* Strong red glow */
+    border-bottom: 2px solid rgba(232, 43, 0, 1);
+    font-size: 20px;
+}
+
+/* Hover Effect - Brutal Red Highlight */
+.gow-theme #dpTable td:hover {
+    background: rgba(232, 43, 0, 0.2); /* Slight fiery highlight */
+    transform: scale(1.05);
+    box-shadow: 0px 0px 12px rgba(232, 43, 0, 0.9);
+    cursor: pointer;
+}
+.gow-theme #dpTable tr:nth-child(2) td:hover {
+    background: rgba(232, 43, 0, 0.2); /* Highlight for the second row */
+    transform: scale(1.05);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+.gow-theme #statsBox {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: 2px solid rgba(232, 43, 0, 0.6);
+    text-shadow: 0px 0px 5px rgba(232, 43, 0, 0.9);
+    box-shadow: 0px 0px 15px rgba(232, 43, 0, 0.3);
+}
+/* ===== Sci-Fi Theme Fix ===== */
+/* Sci-Fi Theme Transparent DP Table */
+/* Make the DP table fully transparent */
+.sci-fi-theme #dpTable {
+    background: transparent; /* No background */
+    border-collapse: collapse; /* Remove extra spacing */
+}
+.sci-fi-theme #statsBox {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: rgb(55, 255, 255);
+    border: 2px solid rgb(24, 255, 251);
+    
+   
+}
+/* Table Borders - Thin Glowing Lines */
+.sci-fi-theme #dpTable th, 
+.sci-fi-theme #dpTable td {
+    background: transparent; /* Fully transparent cells */
+    color: cyan; /* Keep digits visible */
+    font-weight: bold;
+    border: 1px solid rgba(0, 255, 255, 0.4); /* Thin cyan glow lines */
+}
+.sci-fi-theme #dpTable tr:nth-child(2) td:hover {
+    background: rgb(0, 255,255, 0.1); /* Highlight for the second row */
+    transform: scale(1.05);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+/* Table Header - Keep it slightly visible */
+.sci-fi-theme #dpTable th {
+    background: transparent; /* No background */
+   
+    border-bottom: 2px solid rgba(0, 255, 255, 0.6); /* Slightly stronger glow */
+}
+
+/* Hover Effect for Better UX */
+.sci-fi-theme #dpTable td:hover {
+    background: rgba(0, 255, 255, 0.1); /* Slight highlight */
+    transform: scale(1.05);
+    
+}
+
+/* When knapsack is too large, reduce table size */
+.small-dp-table #dpTable {
+    font-size: 14px; /* Reduce text size */
+    min-width: 40px;
+}
+
+/* When knapsack is small, keep normal size */
+.normal-dp-table #dpTable {
+    font-size: 18px;
+    min-width: 55px;
+}
+
+#statsBox {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark box */
+    color: white; /* White text for visibility */
+    padding: 8px 15px; /* Inner spacing */
+    border-radius: 8px; /* Smooth edges */
+    font-size: 16px; /* Readable text */
+    text-align: center; /* Centered text */
+    width: fit-content; /* Only as wide as the content */
+    margin: 10px auto; /* Center horizontally */
+    display: flex; /* Keep everything in one line */
+    gap: 15px; /* Space between stats */
+    justify-content: center; /* Center text inside */
+    align-items: center; /* Vertical alignment */
+    border: 1px solid white; /* White border for better visibility */
+}
+
+/* Hover Effect for Header Cells */
+
+
+/* Ensure the second row cells have the same hover effect */
+
+
+/* Particle Overlay Styles */
+#particleOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* So it doesn't block anything */
+    z-index: 1000; /* Above everything */
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: #ffd700; /* Gold-like spark */
+    border-radius: 50%;
+    opacity: 0.9;
+    animation: drift 1.5s ease-out forwards;
+}
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0.1);
+        opacity: 0;
+    }
+}
+
+/* === Default Animation === */
+@keyframes flyInRow {
+    from { transform: translateX(-100px); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes flyInCol {
+    from { transform: translateY(-100px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeNumber {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-table th:first-child,
+.animate-table td:first-child {
+    animation: flyInRow 0.8s ease forwards;
+}
+
+.animate-table tr:first-child td,
+.animate-table th {
+    animation: flyInCol 0.8s ease forwards;
+}
+
+.animate-cell {
+    animation: fadeNumber 0.6s ease-in-out forwards;
+}
+
+/* Assemble from Dust Animation */
+@keyframes assembleFromDust {
+    0% {
+        opacity: 0;
+        filter: blur(6px);
+        transform: translate(
+            calc(-50px + 100px * random()),
+            calc(-50px + 100px * random())
+        ) scale(0.2) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+}
+
+/* Class to trigger on cell */
+.dust-assemble {
+    animation: assembleFromDust 0.6s ease-out forwards;
+}
+
+/* Make Cells Auto-Adjust */
+#dpTable th, #dpTable td {
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* New Animations */
+@keyframes horrorAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotateX(90deg);
+        text-shadow: none;
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.05) rotateX(10deg);
+        text-shadow: 0 0 3px red, 0 0 10px black;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateX(0);
+        text-shadow: 0 0 5px red, 0 0 10px black;
+    }
+}
+
+@keyframes shadowFade {
+    0% {
+        opacity: 0;
+        text-shadow: 0 0 0px black;
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0px 0px 10px red;
+    }
+}
+
+@keyframes darkFlyIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+.dark-mode {
+  background-color: #000;
+  background-image: url('dark.jpg'); /* Cobweb image */
+  background-repeat: repeat;
+  background-size: cover;
+  color: white;
+}
+
+#speedSlider {
+    width: 100%; /* Use 100% to make it take up the full width of its container */
+    max-width: 200px; /* Optional: To prevent it from getting too wide */
+    margin: 10px;
+}
+
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: relative;
+}
+
+.theme-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
